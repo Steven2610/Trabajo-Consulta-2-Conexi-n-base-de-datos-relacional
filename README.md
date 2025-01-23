@@ -98,10 +98,9 @@ object MySQLConnection {
     }
   }
 }
-![image](https://github.com/user-attachments/assets/132855ad-82e9-4219-a17e-69ea5969ca78)
 
 ```
-
+![image](https://github.com/user-attachments/assets/132855ad-82e9-4219-a17e-69ea5969ca78)
 Ejemplo usando **Slick**:
 ```scala
 import slick.jdbc.MySQLProfile.api._
