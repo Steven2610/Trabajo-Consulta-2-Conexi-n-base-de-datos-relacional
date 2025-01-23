@@ -31,23 +31,47 @@ USE prueba_scala;
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    edad INT NOT NULL
+    edad INT NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    fecha_registro VARCHAR(20) NOT NULL,
+    activo BOOLEAN NOT NULL DEFAULT TRUE
 );
 
-INSERT INTO usuarios (nombre, edad) VALUES 
-('Alice', 25),
-('Bob', 30),
-('Charlie', 22);
+INSERT INTO usuarios (nombre, edad, correo, fecha_registro, activo) VALUES 
+('Alice', 25, 'alice@example.com', '2025-01-01', TRUE),
+('Bob', 30, 'bob@example.com', '2025-01-10', FALSE),
+('Charlie', 22, 'charlie@example.com', '2025-01-15', TRUE),
+('Diana', 28, 'diana@example.com', '2025-01-18', TRUE),
+('Evan', 35, 'evan@example.com', '2024-12-30', TRUE),
+('Fiona', 27, 'fiona@example.com', '2025-01-05', FALSE),
+('George', 40, 'george@example.com', '2024-12-20', TRUE),
+('Hannah', 29, 'hannah@example.com', '2025-01-12', TRUE),
+('Irene', 32, 'irene@example.com', '2025-01-19', FALSE),
+('Jack', 26, 'jack@example.com', '2025-01-20', TRUE);
+
 ```
+![image](https://github.com/user-attachments/assets/77e8cd37-fb7b-44e4-bff1-66936a84e52e)
 
 #### Paso 2: Configurar el entorno en Scala
 Agregue las dependencias necesarias en su archivo `build.sbt`:
 ```scala
-libraryDependencies ++= Seq(
-  "mysql" % "mysql-connector-java" % "8.0.34",
-  "org.tpolecat" %% "doobie-core" % "1.0.0-RC2",
-  "com.typesafe.slick" %% "slick" % "3.4.1"
-)
+import scala.collection.Seq
+
+ThisBuild / version := "0.1.0-SNAPSHOT"
+
+ThisBuild / scalaVersion := "2.13.12"
+//2.13.12
+lazy val root = (project in file("."))
+  .settings(
+    name := "untitled",
+    libraryDependencies ++=Seq(
+
+      "mysql" % "mysql-connector-java" % "8.0.33",
+      "org.tpolecat" %% "doobie-core" % "1.0.0-RC1",
+      "com.typesafe.slick" %% "slick" % "3.4.1"
+    )
+  )
+
 ```
 
 #### Paso 3: Conexión a la base de datos y consulta en Scala
@@ -74,6 +98,8 @@ object MySQLConnection {
     }
   }
 }
+![image](https://github.com/user-attachments/assets/132855ad-82e9-4219-a17e-69ea5969ca78)
+
 ```
 
 Ejemplo usando **Slick**:
@@ -112,4 +138,11 @@ object MySQLConnectionSlick {
 }
 ```
 
-Ambos enfoques son funcionales y permiten realizar consultas fácilmente.
+bibliografia
+Doobie. (n.d.). Doobie Documentation. Recuperado de https://tpolecat.github.io/doobie/
+
+Slick. (n.d.). Slick Documentation. Recuperado de https://scala-slick.org/doc/
+
+MySQL. (n.d.). MySQL Documentation. Recuperado de https://dev.mysql.com/doc/
+
+Cats Effect. (n.d.). Cats Effect Documentation. Recuperado de https://typelevel.org/cats-effect/
