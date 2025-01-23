@@ -1,0 +1,7 @@
+echo "# Trabajo-Consulta-2-Conexi-n-base-de-datos-relacional" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Steven2610/Trabajo-Consulta-2-Conexi-n-base-de-datos-relacional.git
+git push -u origin main
